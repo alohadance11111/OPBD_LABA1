@@ -1,0 +1,20 @@
+from tkinter import *
+def trace_func(var, index, mode):
+    label.config(text=v.get())
+def create_radiobutton(root, text, u):
+    rb = Radiobutton(frame, text=text, value=u, indicatoron=0, width=20, height=3, variable=v,activeforeground="red",activebackground="yellow")
+    rb.pack()
+root = Tk()
+frame = Frame(root)
+v = StringVar()
+v.trace_add("write", trace_func)
+a = {"илья" : "+4 0000000000",
+"илюха" : "+4 9087654321",
+"илюшка" : "+4 1111111111"}
+for (text, phone) in a.items():
+    create_radiobutton(frame, text, phone)
+frame.pack(side=RIGHT)
+label = Label(root, text="", width=20, bg="pink")
+label.pack(side=LEFT, padx=10)
+v.set(a["илья"])
+root.mainloop()
