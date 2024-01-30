@@ -1,0 +1,27 @@
+import tkinter as tk
+
+def move_figure(event):
+    global x, y, dx, dy
+    x, y = event.x, event.y
+    dx = (x - canvas.coords(figure)[0]) / 100
+    dy = (y - canvas.coords(figure)[1]) / 100
+    animate()
+
+def animate():
+    canvas.move(figure, dx, dy)
+    current_x, current_y = canvas.coords(figure)
+    if current_x != x or current_y != y:
+        root.after(10, animate)
+
+root = tk.Tk()
+canvas = tk.Canvas(root, width=400, height=400)
+canvas.pack()
+
+figure = canvas.create_rectangle(50, 50, 100, 100, fill="blue")
+
+x, y = 0, 0
+dx, dy = 0, 0
+
+canvas.bind("<Button-1>", move_figure)
+
+root.mainloop()
