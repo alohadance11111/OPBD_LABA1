@@ -1,0 +1,32 @@
+import tkinter as tk
+from tkinter import messagebox
+
+def show_comment():
+    selected_mood = mood.get()
+
+    if selected_mood == "Счастливый":
+        messagebox.showinfo("Комментарий", "Отлично! Продолжайте радоваться каждому дню!")
+    elif selected_mood == "Грустный":
+        messagebox.showinfo("Комментарий", "Не грустите! Все наладится, держитесь!")
+    elif selected_mood == "Разочарованный":
+        messagebox.showinfo("Комментарий", "Не отчаивайтесь! Всегда есть новые возможности!")
+    elif selected_mood == "Усталый":
+        messagebox.showinfo("Комментарий", "Отдохните хорошенько, и Вы снова будете полны энергии!")
+    else:
+        messagebox.showwarning("Ошибка", "Пожалуйста, выберите настроение!")
+
+root = tk.Tk()
+root.title("Выберите свое настроение")
+
+mood = tk.StringVar()
+
+mood_choices = ["Счастливый", "Грустный", "Разочарованный", "Усталый"]
+mood.set(mood_choices[0])
+
+mood_menu = tk.OptionMenu(root, mood, *mood_choices)
+mood_menu.pack(pady=10)
+
+comment_button = tk.Button(root, text="Показать комментарий", command=show_comment)
+comment_button.pack(pady=10)
+
+root.mainloop()
