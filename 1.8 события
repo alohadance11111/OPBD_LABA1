@@ -1,0 +1,35 @@
+import tkinter as tk
+
+def resize_text():
+    width = int(width_entry.get())
+    height = int(height_entry.get())
+    text.config(width=width, height=height)
+
+def change_background(event):
+    if event.type == "9":  # <FocusIn> event
+        text.config(bg="white")
+    elif event.type == "10":  # <FocusOut> event
+        text.config(bg="lightgray")
+
+root = tk.Tk()
+
+width_label = tk.Label(root, text="Ширина:")
+width_label.grid(row=0, column=0)
+width_entry = tk.Entry(root)
+width_entry.grid(row=0, column=1)
+
+height_label = tk.Label(root, text="Высота:")
+height_label.grid(row=1, column=0)
+height_entry = tk.Entry(root)
+height_entry.grid(row=1, column=1)
+
+resize_button = tk.Button(root, text="Изменить размер", command=resize_text)
+resize_button.grid(row=2, columnspan=2)
+
+text = tk.Text(root, bg="lightgray")
+text.grid(row=3, columnspan=2)
+
+text.bind("<FocusIn>", change_background)
+text.bind("<FocusOut>", change_background)
+
+root.mainloop()
