@@ -1,0 +1,21 @@
+import tkinter as tk
+import random
+
+def move_smiley():
+    x = random.randint(0, root.winfo_width() - smiley_width)
+    y = random.randint(0, root.winfo_height() - smiley_height)
+    button.place(x=x, y=y)
+
+root = tk.Tk()
+root.geometry("400x400")
+
+# Загрузка изображения смайлика
+smiley_image = tk.PhotoImage(file="смайлик.png")
+smiley_width = smiley_image.width()
+smiley_height = smiley_image.height()
+
+# Создание кнопки с изображением смайлика
+button = tk.Button(root, image=smiley_image, command=move_smiley)
+button.place(x=0, y=0)
+
+root.mainloop()
