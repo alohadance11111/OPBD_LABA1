@@ -1,0 +1,53 @@
+import tkinter as tk
+from tkinter import messagebox
+import time
+
+
+class LoginWindow(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Вход")
+
+        self.login_label = tk.Label(self, text="Логин:")
+        self.login_label.pack()
+        self.login_entry = tk.Entry(self)
+        self.login_entry.pack()
+
+        self.password_label = tk.Label(self, text="Пароль:")
+        self.password_label.pack()
+        self.password_entry = tk.Entry(self, show="*")
+        self.password_entry.pack()
+
+        self.login_button = tk.Button(self, text="Войти", command=self.login)
+        self.login_button.pack()
+
+    def login(self):
+        login = self.login_entry.get()
+        password = self.password_entry.get()
+
+        if login == "1234" and password == "4321":
+            self.destroy()
+            MainWindow()
+        else:
+            messagebox.showerror("Ошибка", "Неверный логин или пароль")
+
+
+class MainWindow(tk.Tk):
+    def __init__(self):
+        super().__init__()
+        self.title("Главное окно")
+
+        self.clock_label = tk.Label(self, font=("Arial", 24))
+        self.clock_label.pack()
+
+        self.update_clock()
+
+    def update_clock(self):
+        current_time = time.strftime("%H:%M:%S")
+        self.clock_label.config(text=current_time)
+        self.clock_label.after(1000, self.update_clock)
+
+
+if __name__ == "__main__":
+    login_window = LoginWindow()
+    login_window.mainloop()
