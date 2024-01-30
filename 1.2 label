@@ -1,0 +1,35 @@
+from tkinter import *
+
+class Frame(Tk):
+    def __init__(self):
+        super().__init__()
+        self.title('илюшка')
+        self.configure(bg='white')
+        self.geometry('400x400')
+
+        self.lbl=Label(text='', width=400)
+        self.e1 = Entry(width=400, justify= CENTER)
+
+        color = {'#ff0000': 'Красный',
+                 '#ff7d00': 'Оранжевый',
+                 '#ffff00': 'Жёлтый',
+                 '#00ff00': 'Зелёный',
+                 '#007dff': 'Голубой',
+                 '#0000ff': 'Синий',
+                 '#7d00ff': 'Фиолетовый'}
+        for colour in color.keys():
+            func = lambda c=colour, rus=color[colour]: self.onclick(c,rus)
+            b = Button(text='press', fg='white', command=func, bg=colour,width=60,height=2)
+            self.lbl.pack()
+
+            self.e1.pack()
+
+            b.pack()
+
+    def onclick(self, colour, ru_colour):
+                self.e1.delete(0,END)
+                self.e1.insert(0,colour)
+                self.lbl['text'] = ru_colour
+if __name__ == '__main__':
+    root = Frame()
+    root.mainloop()
